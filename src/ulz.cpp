@@ -6,11 +6,6 @@ Written and placed in the public domain by Ilya Muravyov
 
 */
 
-#ifndef _MSC_VER
-#  define _FILE_OFFSET_BITS 64
-#  define _ftelli64 ftello
-#endif
-
 #define _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES 1
 #define _CRT_SECURE_NO_WARNINGS
 #define _CRT_DISABLE_PERFCRIT_LOCKS
@@ -19,6 +14,11 @@ Written and placed in the public domain by Ilya Muravyov
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+
+#ifndef _MSC_VER
+#  define _FILE_OFFSET_BITS 64
+#  define _ftelli64 ftello
+#endif
 
 #include "ulz.hpp"
 
