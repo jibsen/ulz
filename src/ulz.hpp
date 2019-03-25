@@ -6,8 +6,8 @@ Written and placed in the public domain by Ilya Muravyov
 
 */
 
-#ifndef __ULZ_HPP
-#define __ULZ_HPP
+#ifndef ULZ_HPP_INCLUDED
+#define ULZ_HPP_INCLUDED
 
 class CULZ
 {
@@ -317,4 +317,4 @@ public:
   }
 };
 
-#endif // __ULZ_HPP
+#endif // ULZ_HPP_INCLUDED
