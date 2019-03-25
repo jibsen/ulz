@@ -100,7 +100,7 @@ public:
     U32 x=0;
     for (int i=0; i<=28; i+=7)
     {
-      const int c=*p++;
+      const U32 c=*p++;
       x+=c<<i;
       if (c<128)
         break;
@@ -273,10 +273,10 @@ public:
 
     while (ip<ip_end)
     {
-      const int tag=*ip++;
+      const U32 tag=*ip++;
       if (tag>=32)
       {
-        int run=tag>>5;
+        U32 run=tag>>5;
         if (run==7)
           run+=DecodeMod(ip);
         if ((op_end-op)<run || (ip_end-ip)<run) // Overrun check
@@ -289,13 +289,13 @@ public:
           break;
       }
 
-      int len=(tag&15)+MIN_MATCH;
+      U32 len=(tag&15)+MIN_MATCH;
       if (len==(15+MIN_MATCH))
         len+=DecodeMod(ip);
       if ((op_end-op)<len) // Overrun check
         return -1;
 
-      const int dist=((tag&16)<<12)+UnalignedLoad16(ip);
+      const U32 dist=((tag&16)<<12)+UnalignedLoad16(ip);
       ip+=2;
       if ((op-out)<dist) // Range check
         return -1;
