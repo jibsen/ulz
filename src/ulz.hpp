@@ -279,7 +279,7 @@ public:
         int run=tag>>5;
         if (run==7)
           run+=DecodeMod(ip);
-        if ((op_end-op)<run) // Overrun check
+        if ((op_end-op)<run || (ip_end-ip)<run) // Overrun check
           return -1;
 
         WildCopy(op, ip, run);
