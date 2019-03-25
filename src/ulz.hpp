@@ -279,7 +279,7 @@ public:
         int run=tag>>5;
         if (run==7)
           run+=DecodeMod(ip);
-        if ((op+run)>op_end) // Overrun check
+        if ((op_end-op)<run) // Overrun check
           return -1;
 
         WildCopy(op, ip, run);
@@ -292,14 +292,14 @@ public:
       int len=(tag&15)+MIN_MATCH;
       if (len==(15+MIN_MATCH))
         len+=DecodeMod(ip);
-      if ((op+len)>op_end) // Overrun check
+      if ((op_end-op)<len) // Overrun check
         return -1;
 
       const int dist=((tag&16)<<12)+UnalignedLoad16(ip);
       ip+=2;
-      U8* cp=op-dist;
-      if (cp<out) // Range check
+      if ((op-out)<dist) // Range check
         return -1;
+      U8* cp=op-dist;
 
       if (dist>=4)
       {
